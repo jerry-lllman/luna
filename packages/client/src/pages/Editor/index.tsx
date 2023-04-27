@@ -1,12 +1,10 @@
+import Layouts from "@/layouts";
 import { Layout } from "antd";
 
 export default function Editor() {
 	return (
-		<Layout className="h-screen bg-white">
-			<Layout.Header>
-				<div>Luna</div>
-			</Layout.Header>
-			<Layout>
+		<Layouts showHeader title="Lunax">
+			<Layout className="h-full">
 				<Layout.Sider className=" bg-slate-500">
 					组件列表
 				</Layout.Sider>
@@ -17,6 +15,6 @@ export default function Editor() {
 					组件设置
 				</Layout.Sider>
 			</Layout>
-		</Layout>
+		</Layouts>
 	)
 }
