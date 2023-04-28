@@ -1,6 +1,58 @@
-import { without } from 'lodash-es'
+import { without, pick } from 'lodash-es'
 
-export const commonDefaultProps = {
+interface CommonDefaultPropsType {
+	actionType?: string,
+	url?: string,
+
+	// size
+	height?: string,
+	width?: string,
+	paddingLeft?: string,
+	paddingRight?: string,
+	paddingTop?: string,
+	paddingBottom?: string,
+
+	// border type
+	borderStyle?: string,
+	borderColor?: string,
+	borderWidth?: string,
+	borderRadius?: string,
+
+	// shadow and opacity
+	boxShadow?: string,
+	opacity?: number,
+
+	// position
+	position?: React.CSSProperties["position"],
+	left?: string,
+	top?: string,
+	right?: string,
+
+	color?: React.CSSProperties["color"],
+	background?: React.CSSProperties["background"]
+}
+
+
+export interface LTextPropsType extends CommonDefaultPropsType {
+	text: string,
+	fontSize?: string,
+	fontFamily?: string,
+	fontWeight?: string,
+	fontStyle?: string,
+	textDecoration?: string,
+	lineHeight?: string,
+	textAlign?: React.CSSProperties['textAlign'],
+}
+
+
+export type ComponentPropsType = LTextPropsType
+
+
+
+const excludedTextProps = ['actionType', 'url', 'text'] as const;
+
+
+export const commonDefaultProps: CommonDefaultPropsType = {
 	// actions
 	actionType: '',
 	url: '',
@@ -28,9 +80,13 @@ export const commonDefaultProps = {
 	left: '0',
 	top: '0',
 	right: '0',
+
+	color: '#000',
+	background: ''
 }
 
-export const textDefaultProps = {
+
+export const textDefaultProps: LTextPropsType = {
 	// basic props
 	text: '正文内容',
 	fontSize: '14px',
@@ -40,20 +96,16 @@ export const textDefaultProps = {
 	textDecoration: 'none',
 	lineHeight: '1',
 	textAlign: 'left',
-	color: '#000',
-	backgroundColor: '',
 	...commonDefaultProps
 }
 
-export type LTextProps = React.CSSProperties & typeof textDefaultProps
-
-const excludedTextProps = ['actionType', 'url', 'text'] as const;
+type StyleProps = Omit<ComponentPropsType, typeof excludedTextProps[number]>
 
 // 排除一些特定属性后的到 style 相关的属性名称
-export function getStylePropNames(props: Record<string, any>) {
-	return without(Object.keys(props), ...excludedTextProps)
+export function getStylePropNames(props: ComponentPropsType) {
+	return without(Object.keys(props), ...excludedTextProps) as unknown as keyof StyleProps
 }
 
-// // 获取 textDefaultProps 中剩余的 key，即排除 excludedTextProps 后的所有 key
-// export const stylePropNames = without(Object.keys(textDefaultProps), ...excludedTextProps)
- 
+export function getStyle(props: ComponentPropsType): StyleProps {
+	return pick(props, getStylePropNames(props))
+}

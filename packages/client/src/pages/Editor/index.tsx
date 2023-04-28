@@ -17,7 +17,7 @@ export default function Editor() {
 				<Layout.Content className=" p-7 bg-red-200">
 					<div>
 						{ 
-							components.map(component => <ComponentRender {...component} />)
+							components.map(component => <ComponentRender key={component.id} {...component} />)
 						}
 					</div>
 				</Layout.Content>

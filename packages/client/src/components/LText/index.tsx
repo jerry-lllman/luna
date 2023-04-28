@@ -1,14 +1,16 @@
-import { pick } from 'lodash-es'
+import { LTextPropsType, getStyle } from '@/defaultProps'
 
-import { LTextProps, getStylePropNames } from '@/defaultProps'
+function LText(props: LTextPropsType) {
+	const styleProps = getStyle(props)
 
-
-function LText(props: LTextProps) {
-
-	const styleProps = pick<React.CSSProperties>(props, getStylePropNames(props))
+	const clickHandle = () => {
+		if (props.actionType === 'url') {
+			window.open(props.url)
+		}
+	}
 
 	return (
-		<div style={styleProps}>
+		<div style={styleProps} onClick={clickHandle}>
 			{props.text}
 		</div>
 	)

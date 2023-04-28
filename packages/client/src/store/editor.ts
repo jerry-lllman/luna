@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 import { nanoid } from 'nanoid'
-import { LTextProps } from '@/defaultProps'
+import { ComponentPropsType } from '@/defaultProps'
 
 const NAME_TYPES = ['LText'] as const
 
@@ -17,7 +17,7 @@ export interface EditorProps {
 }
 
 export interface ComponentData {
-	props: LTextProps
+	props: ComponentPropsType
 	// 组件唯一 id
 	id: string
 	// 组件库名称 LText、LImage 等
@@ -25,7 +25,25 @@ export interface ComponentData {
 }
 
 const useEditorStore = create<EditorProps>((set) => ({
-	components: [],
+	components: [
+		{
+			props: {
+				text: "aaaa",
+				actionType: 'url',
+				url: 'https://www.bilibili.com'
+			},
+			id: nanoid(),
+			name: 'LText',
+		},
+		{
+			props: {
+				text: "aaanbbbba",
+				background: '#fff'
+			},
+			id: nanoid(),
+			name: 'LText',
+		},
+	],
 	currentElement: '',
 }))
 
