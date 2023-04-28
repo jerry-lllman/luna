@@ -1,6 +1,8 @@
+import { Layout } from "antd";
+
 import Layouts from "@/layouts";
 import useEditorStore from "@/store/editor";
-import { Layout } from "antd";
+import ComponentRender from "@/components/ComponentsRender";
 
 export default function Editor() {
 
@@ -15,7 +17,7 @@ export default function Editor() {
 				<Layout.Content className=" p-7 bg-red-200">
 					<div>
 						{ 
-							components.map(item => item.props.text)
+							components.map(component => <ComponentRender {...component} />)
 						}
 					</div>
 				</Layout.Content>

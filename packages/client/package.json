@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "antd": "^5.4.5",
+    "lodash-es": "^4.17.21",
     "nanoid": "^4.0.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
@@ -19,6 +20,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config-react": "^0.38.5",
+    "@types/lodash-es": "^4.17.7",
     "@types/react": "^18.0.28",
     "@types/react-dom": "^18.0.11",
     "@typescript-eslint/eslint-plugin": "^5.57.1",
