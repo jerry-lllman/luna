@@ -1,6 +1,7 @@
 import { create } from 'zustand'
 import { nanoid } from 'nanoid'
 import { ComponentPropsType } from '@/defaultProps'
+import { cloneDeep } from 'lodash-es'
 
 const NAME_TYPES = ['LText'] as const
 
@@ -9,42 +10,42 @@ const NAME_TYPES = ['LText'] as const
  */
 export type ComponentTypes = typeof NAME_TYPES[number]
 
-export interface EditorProps {
+export interface EditorStoreProps {
 	// 渲染数组
 	components: ComponentData[]
 	// 当前编辑元素 id
 	currentElement: string
+
+	// 添加组件
+	addComponent: (props: ComponentData) => void
 }
 
 export interface ComponentData {
 	props: ComponentPropsType
 	// 组件唯一 id
-	id: string
+	id?: string
 	// 组件库名称 LText、LImage 等
 	name: ComponentTypes
 }
 
-const useEditorStore = create<EditorProps>((set) => ({
-	components: [
-		{
-			props: {
-				text: "aaaa",
-				actionType: 'url',
-				url: 'https://www.bilibili.com'
-			},
-			id: nanoid(),
-			name: 'LText',
-		},
-		{
-			props: {
-				text: "aaanbbbba",
-				background: '#fff'
-			},
-			id: nanoid(),
-			name: 'LText',
-		},
-	],
+
+const useEditorStore = create<EditorStoreProps>((set) => ({
+	components: [],
 	currentElement: '',
+	addComponent(component: ComponentData) {
+
+		const newComponent = {
+			id: nanoid(),
+			...cloneDeep(component)
+		}
+
+		set((state) => ({
+			components: [
+				...state.components,
+				newComponent
+			],
+		}))
+	}
 }))
 
 export default useEditorStore

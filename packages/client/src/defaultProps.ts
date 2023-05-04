@@ -1,5 +1,3 @@
-import { without, pick } from 'lodash-es'
-
 interface CommonDefaultPropsType {
 	actionType?: string,
 	url?: string,
@@ -28,12 +26,12 @@ interface CommonDefaultPropsType {
 	top?: string,
 	right?: string,
 
+	// color
 	color?: React.CSSProperties["color"],
 	background?: React.CSSProperties["background"]
 }
 
-
-export interface LTextPropsType extends CommonDefaultPropsType {
+export interface TextComponentPropsType extends CommonDefaultPropsType {
 	text: string,
 	fontSize?: string,
 	fontFamily?: string,
@@ -42,17 +40,14 @@ export interface LTextPropsType extends CommonDefaultPropsType {
 	textDecoration?: string,
 	lineHeight?: string,
 	textAlign?: React.CSSProperties['textAlign'],
+	// tag 的类型是react 中的html标签名
+	tag?: keyof JSX.IntrinsicElements
 }
 
+// 所有组件的 props
+export type ComponentPropsType = TextComponentPropsType
 
-export type ComponentPropsType = LTextPropsType
-
-
-
-const excludedTextProps = ['actionType', 'url', 'text'] as const;
-
-
-export const commonDefaultProps: CommonDefaultPropsType = {
+const commonDefaultProps: CommonDefaultPropsType = {
 	// actions
 	actionType: '',
 	url: '',
@@ -86,7 +81,7 @@ export const commonDefaultProps: CommonDefaultPropsType = {
 }
 
 
-export const textDefaultProps: LTextPropsType = {
+const textDefaultProps: TextComponentPropsType = {
 	// basic props
 	text: '正文内容',
 	fontSize: '14px',
@@ -97,15 +92,4 @@ export const textDefaultProps: LTextPropsType = {
 	lineHeight: '1',
 	textAlign: 'left',
 	...commonDefaultProps
-}
-
-type StyleProps = Omit<ComponentPropsType, typeof excludedTextProps[number]>
-
-// 排除一些特定属性后的到 style 相关的属性名称
-export function getStylePropNames(props: ComponentPropsType) {
-	return without(Object.keys(props), ...excludedTextProps) as unknown as keyof StyleProps
-}
-
-export function getStyle(props: ComponentPropsType): StyleProps {
-	return pick(props, getStylePropNames(props))
 }

@@ -1,22 +1,26 @@
-import { LTextPropsType, getStyle } from '@/defaultProps'
+import { TextComponentPropsType } from '@/defaultProps'
+import useComponentCommon from '@/hooks/useComponentCommon'
+import React from 'react'
 
-function LText(props: LTextPropsType) {
-	const styleProps = getStyle(props)
+function LText(props: TextComponentPropsType) {
 
-	const clickHandle = () => {
-		if (props.actionType === 'url') {
-			window.open(props.url)
-		}
-	}
+	const { tag = 'div' } = props
 
-	return (
-		<div style={styleProps} onClick={clickHandle}>
-			{props.text}
-		</div>
+	const { styleProps, handleClick } = useComponentCommon(props)
+
+	return React.createElement(
+		tag,
+		{ style: styleProps, onClick: handleClick },
+		props.text
 	)
+
+	// return (
+	// 	<div style={styleProps} onClick={handleClick}>
+	// 		{props.text}
+	// 	</div>
+	// )
 }
 
 LText.displayName = 'LText'
-
 
 export default LText

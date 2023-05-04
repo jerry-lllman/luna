@@ -3,20 +3,24 @@ import { Layout } from "antd";
 import Layouts from "@/layouts";
 import useEditorStore from "@/store/editor";
 import ComponentRender from "@/components/ComponentsRender";
+import ComponentList from "@/components/ComponentList";
 
 export default function Editor() {
 
-	const components = useEditorStore(state => state.components)
+	const { components, addComponent } = useEditorStore(state => ({
+		components: state.components,
+		addComponent: state.addComponent
+	}))
 
 	return (
 		<Layouts showHeader title="Lunax">
 			<Layout className="h-full">
 				<Layout.Sider className=" bg-slate-500">
-					组件列表
+					<ComponentList onItemClick={addComponent} />
 				</Layout.Sider>
 				<Layout.Content className=" p-7 bg-red-200">
 					<div>
-						{ 
+						{
 							components.map(component => <ComponentRender key={component.id} {...component} />)
 						}
 					</div>
