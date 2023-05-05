@@ -1,10 +1,10 @@
 import { defaultTemplates } from "@/defaultTemplates";
 import ComponentRender from "../ComponentsRender";
-import { ComponentData } from "@/store/editor";
+import { AddComponentData } from "@/store/editor";
 
 
 interface ComponentListProps {
-	onItemClick: (template: ComponentData) => void
+	onItemClick: (template: AddComponentData) => void
 }
 
 export default function ComponentList(props: ComponentListProps) {

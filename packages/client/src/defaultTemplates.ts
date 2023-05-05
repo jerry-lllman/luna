@@ -1,6 +1,6 @@
 import { ComponentData } from "./store/editor";
 
-export const defaultTemplates: ComponentData[] = [
+export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
 	{
 		name: 'LText',
 		props: {

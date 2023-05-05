@@ -6,34 +6,38 @@ import { cloneDeep } from 'lodash-es'
 const NAME_TYPES = ['LText'] as const
 
 /**
- * @description 所有组件的类型
+ * @description 所有组件的类型名称
  */
 export type ComponentTypes = typeof NAME_TYPES[number]
+
+export interface ComponentData {
+	props: ComponentPropsType
+	// 组件唯一 id
+	id: string
+	// 组件库名称 LText、LImage 等
+	name: ComponentTypes
+}
+
+export type AddComponentData = Omit<ComponentData, 'id'>
 
 export interface EditorStoreProps {
 	// 渲染数组
 	components: ComponentData[]
 	// 当前编辑元素 id
-	currentElement: string
-
-	// 添加组件
-	addComponent: (props: ComponentData) => void
-}
-
-export interface ComponentData {
-	props: ComponentPropsType
-	// 组件唯一 id
-	id?: string
-	// 组件库名称 LText、LImage 等
-	name: ComponentTypes
+	currentComponentId: string
+	addComponent: (props: AddComponentData) => void
+	setActive: (id: string) => void
+	getCurrentComponent: () => ComponentData | null
 }
 
 
-const useEditorStore = create<EditorStoreProps>((set) => ({
+const useEditorStore = create<EditorStoreProps>((set, get) => ({
 	components: [],
-	currentElement: '',
-	addComponent(component: ComponentData) {
-
+	currentComponentId: '',
+	/**
+	 * @description 添加组件
+	 */
+	addComponent(component) {
 		const newComponent = {
 			id: nanoid(),
 			...cloneDeep(component)
@@ -45,6 +49,22 @@ const useEditorStore = create<EditorStoreProps>((set) => ({
 				newComponent
 			],
 		}))
+	},
+	/**
+	 * @description 设置选中的 currentComponentId
+	 */
+	setActive(id) {
+		set(() => ({
+			currentComponentId: id,
+		}))
+	},
+
+	/**
+	 * @description 获取当前 active 的组件
+	 */
+	getCurrentComponent() {
+		const { components, currentComponentId } = get()
+		return components.find(item => item.id === currentComponentId) || null
 	}
 }))
 
