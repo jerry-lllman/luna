@@ -1,5 +1,6 @@
 import { ComponentPropsType } from "@/defaultProps"
 import { PropToForm, PropsToForms, mapPropsToForms } from "@/propsMap"
+import { Form } from "antd"
 import { isNil, keys, reduce } from "lodash-es"
 import { Suspense } from "react"
 
@@ -22,7 +23,10 @@ export default function PropsTable(props: PropsTableProps) {
 
 
 	return (
-		<div>
+		<Form
+			labelCol={{ span: 6 }}
+			wrapperCol={{ span: 18 }}
+		>
 			{
 				keys(finalProps).map((key) => {
 					// 拿到 mapPropsToForms 中自定的对应字段的内容 PropToForm 类型
@@ -30,10 +34,22 @@ export default function PropsTable(props: PropsTableProps) {
 					// 如果 item 不存在则返回 null
 					if (isNil(item)) return null
 					// 否则渲染该组件
-					const	Component = item.component
-					return <Suspense fallback="loading"><Component value={item?.value} /></Suspense>
+					const Component = item.component
+					return (
+						<Suspense
+							key={key}
+							fallback={<div>loading...</div>}
+						>
+							<Form.Item
+								label={item.label}
+							>
+								{/* {item.label && <span>{item.label}</span>} */}
+								<Component value={item?.value}  {...item.extraProps} />
+							</Form.Item>
+						</Suspense>
+					)
 				})
 			}
-		</div>
+		</Form>
 	)
 }

@@ -5,16 +5,19 @@ export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
 		name: 'LText',
 		props: {
 			text: '大标题',
+			tag: 'h2',
 			fontSize: '30px',
+			lineHeight: '1',
 			fontWeight: 'bold',
-			tag: 'h2'
 		}
 	},
 	{
 		name: 'LText',
 		props: {
 			text: '正文内容',
-			tag: 'p'
+			tag: 'p',
+			fontSize: '14px',
+			lineHeight: '2',
 		}
 	},
 	{

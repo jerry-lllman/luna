@@ -22,10 +22,10 @@ export default function Editor() {
 	return (
 		<Layouts showHeader title="Lunax">
 			<Layout className="h-full">
-				<Layout.Sider className=" bg-slate-500">
+				<Layout.Sider theme="light" width={320}>
 					<ComponentList onItemClick={addComponent} />
 				</Layout.Sider>
-				<Layout.Content className=" p-7 bg-red-200">
+				<Layout.Content className=" p-7 bg-slate-100">
 					<div>
 						{
 							components.map(component => (
@@ -41,8 +41,10 @@ export default function Editor() {
 						}
 					</div>
 				</Layout.Content>
-				<Layout.Sider className="bg-blue-200">
-				 { currentComponent && currentComponent.props && <PropsTable props={currentComponent.props} />}
+				<Layout.Sider theme="light" width={320}>
+					<div className="p-7">
+						{currentComponent && currentComponent.props && <PropsTable props={currentComponent.props} />}
+					</div>
 				</Layout.Sider>
 			</Layout>
 		</Layouts>
