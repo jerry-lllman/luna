@@ -19,6 +19,21 @@ export type PropsToForms = {
 	[P in keyof ComponentPropsType]?: PropToForm
 }
 
+
+const  fontFamilyOptions = [
+	{ label: '默认', value: 'sans-serif' },
+	{ label: '宋体', value: '"SimSun", "STSong", serif' },
+	{ label: '黑体', value: '"SimHei", "STHeiti", sans-serif' },
+	{ label: '微软雅黑', value: '"Microsoft YaHei", "STXihei", sans-serif' },
+	{ label: '楷体', value: '"KaiTi", "STKaiti", serif' },
+	{ label: '仿宋', value: '"FangSong", "STFangsong", serif' },
+	{ label: 'Arial', value: 'Arial, sans-serif' },
+	{ label: 'Times New Roman', value: '"Times New Roman", serif' },
+	{ label: 'Georgia', value: 'Georgia, serif' },
+	{ label: 'Verdana', value: 'Verdana, sans-serif' },
+	{ label: 'Courier New', value: '"Courier New", monospace' },
+]
+
 export const mapPropsToForms: PropsToForms = {
 	text: {
 		label: '文本',
@@ -38,7 +53,7 @@ export const mapPropsToForms: PropsToForms = {
 			max: 100,
 			step: 1,
 			formatter: (value: number) => `${value}px`,
-      parser: (value: string) => value!.replace('px', ''),
+			parser: (value: string) => value!.replace('px', ''),
 			onChange: (value: number) => value,
 		}
 	},
@@ -56,20 +71,7 @@ export const mapPropsToForms: PropsToForms = {
 		label: '字体',
 		component: Select,
 		extraProps: {
-			options: [
-				{ label: '默认', value: 'sans-serif' },
-				{ label: '宋体', value: 'SimSun' },
-				{ label: '黑体', value: 'SimHei' },
-				{ label: '微软雅黑', value: 'Microsoft YaHei' },
-				{ label: '楷体', value: 'KaiTi' },
-				{ label: '仿宋', value: 'FangSong' },
-				{ label: '新宋体', value: 'NSimSun' },
-				{ label: 'Arial', value: 'Arial, sans-serif' },
-				{ label: 'Times New Roman', value: 'Times New Roman, serif' },
-				{ label: 'Georgia', value: 'Georgia, serif' },
-				{ label: 'Verdana', value: 'Verdana, sans-serif' },
-				{ label: 'Courier New', value: 'Courier New, monospace' },
-			],
+			options: fontFamilyOptions.map(item => ({ ...item, label: <span style={{ fontFamily: item.value }}>{item.label}</span> })),
 			onChange: (value: number) => value,
 		}
 	},
