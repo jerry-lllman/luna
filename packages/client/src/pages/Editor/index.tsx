@@ -1,30 +1,32 @@
-import { Layout } from "antd";
+import { Layout } from 'antd'
 
-import Layouts from "@/layouts";
-import useEditorStore from "@/store/editor";
-import ComponentRender from "@/components/ComponentsRender";
-import ComponentList from "@/components/ComponentList";
-import EditWrapper from "@/components/EditWrapper";
-import PropsTable from "@/components/PropsTable";
+import Layouts from '@/layouts'
+import useEditorStore from '@/store/editor'
+import ComponentRender from '@/components/ComponentsRender'
+import ComponentList from '@/components/ComponentList'
+import EditWrapper from '@/components/EditWrapper'
+import PropsTable from '@/components/PropsTable'
 
 export default function Editor() {
+  const {
+    components, addComponent, setActive, getCurrentComponent, updateComponent,
+  } = useEditorStore((state) => {
+    const {
+      components, addComponent, setActive, getCurrentComponent, updateComponent,
+    } = state
 
-	const { components, addComponent, setActive, getCurrentComponent, updateComponent } = useEditorStore(state => {
+    return {
+      components,
+      addComponent,
+      setActive,
+      getCurrentComponent,
+      updateComponent,
+    }
+  })
 
-		const { components, addComponent, setActive, getCurrentComponent, updateComponent } = state
+  const currentComponent = getCurrentComponent()
 
-		return {
-			components,
-			addComponent,
-			setActive,
-			getCurrentComponent,
-			updateComponent
-		}
-	})
-
-	const currentComponent = getCurrentComponent()
-
-	return (
+  return (
 		<Layouts showHeader title="Lunax">
 			<Layout className="h-full">
 				<Layout.Sider theme="light" width={320}>
@@ -40,7 +42,7 @@ export default function Editor() {
 									active={component.id === currentComponent?.id}
 									setActiveId={setActive}
 								>
-									<ComponentRender  {...component} />
+									<ComponentRender {...component} />
 								</EditWrapper>
 							))
 						}
@@ -57,5 +59,5 @@ export default function Editor() {
 				</Layout.Sider>
 			</Layout>
 		</Layouts>
-	)
+  )
 }

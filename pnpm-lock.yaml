@@ -18,6 +18,7 @@ importers:
       autoprefixer: ^10.4.14
       classnames: ^2.3.2
       eslint: ^8.38.0
+      eslint-plugin-react: ^7.32.2
       eslint-plugin-react-hooks: ^4.6.0
       eslint-plugin-react-refresh: ^0.3.4
       less: ^4.1.3
@@ -30,6 +31,7 @@ importers:
       tailwindcss: ^3.3.2
       typescript: ^5.0.2
       vite: ^4.3.2
+      vite-plugin-eslint: ^1.8.1
       zustand: ^4.3.7
     dependencies:
       antd: 5.4.5_biqbaboplfbrettd7655fr4n2y
@@ -50,6 +52,7 @@ importers:
       '@vitejs/plugin-react-swc': 3.3.0_vite@4.3.2
       autoprefixer: 10.4.14_postcss@8.4.23
       eslint: 8.39.0
+      eslint-plugin-react: 7.32.2_eslint@8.39.0
       eslint-plugin-react-hooks: 4.6.0_eslint@8.39.0
       eslint-plugin-react-refresh: 0.3.4_eslint@8.39.0
       less: 4.1.3
@@ -57,6 +60,7 @@ importers:
       tailwindcss: 3.3.2
       typescript: 5.0.4
       vite: 4.3.2_less@4.1.3
+      vite-plugin-eslint: 1.8.1_eslint@8.39.0+vite@4.3.2
 
 packages:
 
@@ -623,6 +627,14 @@ packages:
     engines: {node: '>=14'}
     dev: false
 
+  /@rollup/pluginutils/4.2.1:
+    resolution: {integrity: sha512-iKnFXr7NkdZAIHiIWE+BX5ULi/ucVFYWD6TbAV+rZctiRTY2PL6tsIKhoIOaoskiWAkgu+VsbXgUVDNLHf+InQ==}
+    engines: {node: '>= 8.0.0'}
+    dependencies:
+      estree-walker: 2.0.2
+      picomatch: 2.3.1
+    dev: true
+
   /@swc/core-darwin-arm64/1.3.55:
     resolution: {integrity: sha512-UnHC8aPg/JvHhgXxTU6EhTtfnYNS7nhq8EKB8laNPxlHbwEyMBVQ2QuJHlNCtFtvSfX/uH5l04Ld1iGXnBTfdQ==}
     engines: {node: '>=10'}
@@ -733,6 +745,17 @@ packages:
       '@swc/core-win32-arm64-msvc': 1.3.55
       '@swc/core-win32-ia32-msvc': 1.3.55
       '@swc/core-win32-x64-msvc': 1.3.55
+    dev: true
+
+  /@types/eslint/8.37.0:
+    resolution: {integrity: sha512-Piet7dG2JBuDIfohBngQ3rCt7MgO9xCO4xIMKxBThCq5PNRB91IjlJ10eJVwfoNtvTErmxLzwBZ7rHZtbOMmFQ==}
+    dependencies:
+      '@types/estree': 1.0.1
+      '@types/json-schema': 7.0.11
+    dev: true
+
+  /@types/estree/1.0.1:
+    resolution: {integrity: sha512-LG4opVs2ANWZ1TJoKc937iMmNstM/d0ae1vNbnBvBhqCSezgVUOzcLCqbI5elV8Vy6WKwKjaqR+zO9VKirBBCA==}
     dev: true
 
   /@types/json-schema/7.0.11:
@@ -1976,6 +1999,10 @@ packages:
   /estraverse/5.3.0:
     resolution: {integrity: sha512-MMdARuVEQziNTeJD8DgMqmhwR11BRQ/cBP+pLtYdSTnf3MIO8fFeiINEbX36ZdNlfU/7A9f3gUw49B3oQsvwBA==}
     engines: {node: '>=4.0'}
+    dev: true
+
+  /estree-walker/2.0.2:
+    resolution: {integrity: sha512-Rfkk/Mp/DL7JVje3u18FxFujQlTNR2q6QfMSMB7AvCBx91NGj/ba3kCfza0f6dVDbw7YlRf/nDrn7pQrCCyQ/w==}
     dev: true
 
   /esutils/2.0.3:
@@ -3745,6 +3772,14 @@ packages:
       glob: 7.2.3
     dev: true
 
+  /rollup/2.79.1:
+    resolution: {integrity: sha512-uKxbd0IhMZOhjAiD5oAFp7BqvkA4Dv47qpOCtaNvng4HBwdbWtdOh8f5nZNuk2rp51PMGk3bzfWu5oayNEuYnw==}
+    engines: {node: '>=10.0.0'}
+    hasBin: true
+    optionalDependencies:
+      fsevents: 2.3.2
+    dev: true
+
   /rollup/3.21.0:
     resolution: {integrity: sha512-ANPhVcyeHvYdQMUyCbczy33nbLzI7RzrBje4uvNiTDJGIMtlKoOStmympwr9OtS1LZxiDmE2wvxHyVhoLtf1KQ==}
     engines: {node: '>=14.18.0', npm: '>=8.0.0'}
@@ -4156,6 +4191,19 @@ packages:
     dependencies:
       spdx-correct: 3.2.0
       spdx-expression-parse: 3.0.1
+    dev: true
+
+  /vite-plugin-eslint/1.8.1_eslint@8.39.0+vite@4.3.2:
+    resolution: {integrity: sha512-PqdMf3Y2fLO9FsNPmMX+//2BF5SF8nEWspZdgl4kSt7UvHDRHVVfHvxsD7ULYzZrJDGRxR81Nq7TOFgwMnUang==}
+    peerDependencies:
+      eslint: '>=7'
+      vite: '>=2'
+    dependencies:
+      '@rollup/pluginutils': 4.2.1
+      '@types/eslint': 8.37.0
+      eslint: 8.39.0
+      rollup: 2.79.1
+      vite: 4.3.2_less@4.1.3
     dev: true
 
   /vite/4.3.2_less@4.1.3:
