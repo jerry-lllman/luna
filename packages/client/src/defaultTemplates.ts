@@ -6,9 +6,10 @@ export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
 		props: {
 			text: '大标题',
 			tag: 'h2',
-			fontSize: '30px',
-			lineHeight: '1',
-			fontWeight: 'bold',
+			// fontSize: '30px',
+			// lineHeight: '1',
+			// fontWeight: 'bold',
+			// fontFamily: 'sans-serif'
 		}
 	},
 	{
@@ -16,8 +17,10 @@ export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
 		props: {
 			text: '正文内容',
 			tag: 'p',
-			fontSize: '14px',
+			fontSize: '14',
 			lineHeight: '2',
+			fontFamily: 'sans-serif',
+			textAlign: 'left'
 		}
 	},
 	{

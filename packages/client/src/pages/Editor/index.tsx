@@ -9,11 +9,16 @@ import PropsTable from "@/components/PropsTable";
 
 export default function Editor() {
 
-	const { components, addComponent, setActive, getCurrentComponent } = useEditorStore(state => {
+	const { components, addComponent, setActive, getCurrentComponent, updateComponent } = useEditorStore(state => {
 
-		const { components, addComponent, setActive, getCurrentComponent } = state
+		const { components, addComponent, setActive, getCurrentComponent, updateComponent } = state
+
 		return {
-			components, addComponent, setActive, getCurrentComponent
+			components,
+			addComponent,
+			setActive,
+			getCurrentComponent,
+			updateComponent
 		}
 	})
 
@@ -43,7 +48,11 @@ export default function Editor() {
 				</Layout.Content>
 				<Layout.Sider theme="light" width={320}>
 					<div className="p-7">
-						{currentComponent && currentComponent.props && <PropsTable props={currentComponent.props} />}
+						{
+							currentComponent
+							&& currentComponent.props
+							&& <PropsTable props={currentComponent.props} updateComponentProps={value => updateComponent(currentComponent.id, value)} />
+						}
 					</div>
 				</Layout.Sider>
 			</Layout>

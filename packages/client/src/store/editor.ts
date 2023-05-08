@@ -28,6 +28,7 @@ export interface EditorStoreProps {
 	addComponent: (props: AddComponentData) => void
 	setActive: (id: string) => void
 	getCurrentComponent: () => ComponentData | null
+	updateComponent: (id: string, props: ComponentPropsType) => void
 }
 
 
@@ -65,7 +66,25 @@ const useEditorStore = create<EditorStoreProps>((set, get) => ({
 	getCurrentComponent() {
 		const { components, currentComponentId } = get()
 		return components.find(item => item.id === currentComponentId) || null
+	},
+
+	/**
+	 * @description 更新组件的 props
+	 * @param id 组件 id
+	 * @param props 组件 props
+	 */
+	updateComponent(id, props) {
+		const { components } = get()
+		const component = components.find(item => item.id === id)!
+		component.props = {
+			...component.props,
+			...props
+		}
+		set(() => ({
+			components
+		}))
 	}
+
 }))
 
 export default useEditorStore
