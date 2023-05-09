@@ -22,9 +22,7 @@ type LayoutPropsWithoutTitle = {
 type LayoutsProps = (LayoutPropsWithTitle | LayoutPropsWithoutTitle) & LayoutProps
 
 export default function Layouts(props: LayoutsProps) {
-  const {
-    title, showHeader, showFooter = false, ...layoutProps
-  } = props
+  const { title, showHeader, showFooter = false, ...layoutProps } = props
 
   return (
 		<Layout className="h-screen bg-white" {...layoutProps}>

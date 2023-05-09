@@ -35,8 +35,8 @@ const useEditorStore = create<EditorStoreProps>((set, get) => ({
   components: [],
   currentComponentId: '',
   /**
-	 * @description 添加组件
-	 */
+   * @description 添加组件
+   */
   addComponent(component) {
     const newComponent = {
       id: nanoid(),
@@ -45,31 +45,30 @@ const useEditorStore = create<EditorStoreProps>((set, get) => ({
 
     set(state => ({
       components: [
-        ...state.components,
-        newComponent,
+        ...state.components, newComponent,
       ],
     }))
   },
   /**
-	 * @description 设置选中的 currentComponentId
-	 */
+   * @description 设置选中的 currentComponentId
+   */
   setActive(id) {
     set(() => ({ currentComponentId: id }))
   },
 
   /**
-	 * @description 获取当前 active 的组件
-	 */
+   * @description 获取当前 active 的组件
+   */
   getCurrentComponent() {
     const { components, currentComponentId } = get()
     return components.find(item => item.id === currentComponentId) || null
   },
 
   /**
-	 * @description 更新组件的 props
-	 * @param id 组件 id
-	 * @param props 组件 props
-	 */
+   * @description 更新组件的 props
+   * @param id 组件 id
+   * @param props 组件 props
+   */
   updateComponent(id, props) {
     const { components } = get()
     const component = components.find(item => item.id === id)!

@@ -13,20 +13,6 @@ module.exports = {
   rules: {
     'react-refresh/only-export-components': 'warn',
     "no-tabs": "off",
-    'no-mixed-spaces-and-tabs': 'off',
-    "object-curly-newline": ["error", {
-      "ImportDeclaration": {
-        "multiline": true,
-        "minProperties": 2
-      },
-      "ObjectExpression": {
-        "multiline": true,
-        "minProperties": 4
-      },
-      "ObjectPattern": {
-        "multiline": true,
-        "minProperties": 4
-      }
-    }]
-  },
+    'no-mixed-spaces-and-tabs': 'off'
+  }
 }
