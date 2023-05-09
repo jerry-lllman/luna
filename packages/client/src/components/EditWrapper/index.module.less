@@ -1,0 +1,13 @@
+
+.edit_wrapper {
+	@apply cursor-pointer border border-transparent select-none;
+
+	&:hover {
+		@apply border-dashed border-slate-400;
+	}
+
+	&.active {
+		@apply border-solid border-sky-500 select-none;
+		z-index: 1500;
+	}
+}

@@ -1,12 +1,13 @@
-import { Card, Col, Row } from "antd"
-
+import {
+  Card, Col, Row,
+} from 'antd'
 
 interface TemplateListProps {
-	list: any[]
+  list: any[]
 }
 
 export default function TemplateList(props: TemplateListProps) {
-	return (
+  return (
 		<div>
 			<Row gutter={[16, 16]}>
 				{
@@ -20,5 +21,5 @@ export default function TemplateList(props: TemplateListProps) {
 				}
 			</Row>
 		</div>
-	)
+  )
 }
