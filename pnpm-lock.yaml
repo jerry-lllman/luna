@@ -5,9 +5,10 @@ importers:
   .:
     specifiers: {}
 
-  packages/client:
+  packages/luna-client:
     specifiers:
       '@antfu/eslint-config-react': ^0.38.5
+      '@jerry/luna-components': workspace:^0.1.0
       '@types/lodash-es': ^4.17.7
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
@@ -34,6 +35,7 @@ importers:
       vite-plugin-eslint: ^1.8.1
       zustand: ^4.3.7
     dependencies:
+      '@jerry/luna-components': link:../luna-components
       antd: 5.4.5_biqbaboplfbrettd7655fr4n2y
       classnames: 2.3.2
       lodash-es: 4.17.21
