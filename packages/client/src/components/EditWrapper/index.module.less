@@ -1,9 +1,13 @@
-
 .edit_wrapper {
-	@apply cursor-pointer border border-transparent select-none;
+	@apply relative cursor-pointer border border-transparent select-none;
 
 	&:hover {
 		@apply border-dashed border-slate-400;
+	}
+
+	&::before {
+		content: "";
+		@apply absolute top-0 left-0 right-0 bottom-0 z-10;
 	}
 
 	&.active {

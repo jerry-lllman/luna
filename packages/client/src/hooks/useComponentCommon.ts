@@ -19,8 +19,10 @@ function useComponentCommon(props: Readonly<ComponentPropsType>) {
   const styleProps = getStyle(props)
 
   const handleClick = () => {
-    if (props.actionType === 'url' && props.url)
+    if (props.actionType === 'url' && props.url) {
+      debugger
       window.location.href = props.url
+    }
   }
 
   return {

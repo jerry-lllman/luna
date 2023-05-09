@@ -45,7 +45,7 @@ export const mapPropsToForms: PropsToForms = {
     ),
   },
   color: {
-    label: '文本',
+    label: '颜色',
     component: '',
   },
   fontSize: {

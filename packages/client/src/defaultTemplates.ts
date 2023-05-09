@@ -30,6 +30,8 @@ export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
       color: '#1890ff',
       textDecoration: 'underline',
       tag: 'a',
+      actionType: 'url',
+      url: 'https://www.bilibili.com',
     },
   },
   {
