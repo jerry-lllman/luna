@@ -9,9 +9,7 @@ interface EditWrapperProps {
 }
 
 export default function EditWrapper(props: EditWrapperProps) {
-  const {
-    id, active = false, setActiveId, children,
-  } = props
+  const { id, active = false, setActiveId, children } = props
 
   const editWrapperClassName = classnames(styles.edit_wrapper, [
     active && styles.active,

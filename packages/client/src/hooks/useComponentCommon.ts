@@ -1,6 +1,4 @@
-import {
-  pick, without,
-} from 'lodash-es'
+import { pick, without } from 'lodash-es'
 import type { ComponentPropsType } from '@/defaultProps'
 
 const excludedTextProps = ['actionType', 'url', 'text'] as const
@@ -21,8 +19,10 @@ function useComponentCommon(props: Readonly<ComponentPropsType>) {
   const styleProps = getStyle(props)
 
   const handleClick = () => {
-    if (props.actionType === 'url' && props.url)
+    if (props.actionType === 'url' && props.url) {
+      debugger
       window.location.href = props.url
+    }
   }
 
   return {

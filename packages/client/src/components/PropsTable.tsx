@@ -1,14 +1,8 @@
 import { Form } from 'antd'
-import {
-  isNil, keys, mapValues, reduce,
-} from 'lodash-es'
-import {
-  Suspense, cloneElement, isValidElement,
-} from 'react'
+import { isNil, keys, mapValues, reduce } from 'lodash-es'
+import { Suspense, cloneElement, isValidElement } from 'react'
 import { mapPropsToForms } from '@/propsMap'
-import type {
-  PropToForm, PropsToForms,
-} from '@/propsMap'
+import type { PropToForm, PropsToForms } from '@/propsMap'
 import type { ComponentPropsType } from '@/defaultProps'
 
 interface PropsTableProps {
@@ -38,7 +32,9 @@ export default function PropsTable(props: PropsTableProps) {
       // 需要先判断一下是否为 React 组件
       if (isValidElement(newItem.component)) {
         // 给组件的 props 添加组件值，如果没有定义就以 value 作为key
-        const itemComponentProps = { ...newItem.component.props, [item.valueProp || 'value']: value }
+        const itemComponentProps = {
+          ...newItem.component.props, [item.valueProp || 'value']: value,
+        }
 
         // 对事件进行包装成可以更新 store 的事件
         mapValues(itemComponentProps, (value, key) => {
@@ -47,7 +43,9 @@ export default function PropsTable(props: PropsTableProps) {
             itemComponentProps![key] = (e: any) => {
               let newValue = e
               newValue = value(e)
-              const newProps = { ...componentProps, [newKey]: newValue }
+              const newProps = {
+                ...componentProps, [newKey]: newValue,
+              }
               // 更新 store 的 props
               updateComponentProps(newProps)
             }

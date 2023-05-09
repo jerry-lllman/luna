@@ -26,11 +26,12 @@ export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
   {
     name: 'LText',
     props: {
-
       text: '链接',
       color: '#1890ff',
       textDecoration: 'underline',
       tag: 'a',
+      actionType: 'url',
+      url: 'https://www.bilibili.com',
     },
   },
   {
