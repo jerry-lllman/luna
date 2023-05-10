@@ -10,7 +10,7 @@ export interface LTextComponentPropsType extends CommonDefaultPropsType {
   fontStyle?: string
   textDecoration?: string
   lineHeight?: string
-  textAlign?: React.CSSProperties['textAlign']
+  // textAlign?: React.CSSProperties['textAlign']
   // tag 的类型是react 中的html标签名
   tag?: keyof JSX.IntrinsicElements
 }

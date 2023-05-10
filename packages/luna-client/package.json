@@ -1,7 +1,7 @@
 {
-  "name": "@jerry/luna-client",
+  "name": "@luna-cat/luna-client",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.1.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -10,7 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@jerry/luna-components": "^0.1.0",
+    "@luna-cat/luna-components": "^0.1.0",
     "antd": "^5.4.5",
     "classnames": "^2.3.2",
     "lodash-es": "^4.17.21",

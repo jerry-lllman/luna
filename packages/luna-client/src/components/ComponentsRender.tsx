@@ -1,5 +1,5 @@
 import type { AddComponentData } from '@/store/editor'
-import { LText } from '@jerry/luna-components'
+import { LText } from '@luna-cat/luna-components'
 
 const COMPONENT_MAP = {
   LText,

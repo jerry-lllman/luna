@@ -7,23 +7,23 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      file: 'dist/index.js',
-      format: 'cjs',
-      exports: 'named',
-      sourcemap: true,
+      format: 'esm',
+      file: './dist/index.mjs'
     },
     {
-      file: 'es/index.js',
-      format: 'esm',
-      exports: 'named',
-      sourcemap: true,
-    },
+      format: 'cjs',
+      file: './dist/index.cjs.js'
+    }
   ],
   plugins: [
     peerDepsExternal(),
     resolve(),
     commonjs(),
-    typescript()
+    typescript({
+      compilerOptions: {
+        declaration: false
+      }
+    })
   ],
   external: ['react', 'react-dom', 'lodash-es'],
 };
