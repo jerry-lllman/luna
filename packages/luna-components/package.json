@@ -6,7 +6,6 @@
   "module": "dist/index.esm.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "dev": "vite",
     "build": "pnpm build:types && pnpm build:source",
     "build:source": "rollup -c",
     "build:types": "tsc",
@@ -19,6 +18,7 @@
   },
   "devDependencies": {
     "@antfu/eslint-config-react": "^0.38.5",
+    "@rollup/plugin-alias": "^5.0.0",
     "@rollup/plugin-commonjs": "^24.1.0",
     "@rollup/plugin-node-resolve": "^15.0.2",
     "@rollup/plugin-typescript": "^11.1.0",

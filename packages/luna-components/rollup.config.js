@@ -1,5 +1,4 @@
 import resolve from '@rollup/plugin-node-resolve';
-import commonjs from '@rollup/plugin-commonjs';
 import typescript from '@rollup/plugin-typescript';
 import peerDepsExternal from 'rollup-plugin-peer-deps-external';
 
@@ -8,7 +7,7 @@ export default {
   output: [
     {
       format: 'esm',
-      file: './dist/index.mjs'
+      file: './dist/index.esm.js'
     },
     {
       format: 'cjs',
@@ -16,14 +15,11 @@ export default {
     }
   ],
   plugins: [
-    peerDepsExternal(),
+    peerDepsExternal({ includeDependencies: true }),
     resolve(),
-    commonjs(),
     typescript({
-      compilerOptions: {
-        declaration: false
-      }
+      declaration: false
     })
   ],
-  external: ['react', 'react-dom', 'lodash-es'],
+  external: ['react', 'react-dom'],
 };

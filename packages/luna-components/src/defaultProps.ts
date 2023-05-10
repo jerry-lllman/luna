@@ -1,4 +1,4 @@
-import { LTextComponentPropsType } from "@/components/LText"
+import { LTextComponentPropsType } from "./components/LText"
 
 export interface CommonDefaultPropsType {
   actionType?: string

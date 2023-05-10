@@ -1,5 +1,5 @@
 import { pick, without } from 'lodash-es'
-import type { ComponentPropsType } from '@/defaultProps'
+import type { ComponentPropsType } from '../defaultProps'
 
 const excludedTextProps = ['actionType', 'url', 'text'] as const
 

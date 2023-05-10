@@ -1,6 +1,6 @@
 import React from 'react'
-import type { CommonDefaultPropsType } from '@/defaultProps'
-import useComponentCommon from '@/hooks/useComponentCommon'
+import type { CommonDefaultPropsType } from '../../defaultProps'
+import useComponentCommon from '../../hooks/useComponentCommon'
 
 export interface LTextComponentPropsType extends CommonDefaultPropsType {
   text: string
