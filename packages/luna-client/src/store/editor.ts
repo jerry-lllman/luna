@@ -1,7 +1,7 @@
 import { create } from 'zustand'
 import { nanoid } from 'nanoid'
 import { cloneDeep } from 'lodash-es'
-import type { ComponentPropsType } from '@/defaultProps'
+import { ComponentPropsType } from '@luna-cat/luna-components'
 
 const NAME_TYPES = ['LText'] as const
 

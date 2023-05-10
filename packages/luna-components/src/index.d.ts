@@ -1,0 +1,1 @@
+declare module '@luna-cat/luna-components';
