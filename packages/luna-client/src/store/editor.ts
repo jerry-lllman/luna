@@ -28,12 +28,13 @@ export interface EditorStoreProps {
   addComponent: (props: AddComponentData) => void
   setActive: (id: string) => void
   getCurrentComponent: () => ComponentData | null
-  updateComponent: (id: string, props: ComponentPropsType) => void
+  updateComponent: (id: string, props: Partial<ComponentPropsType>) => void
 }
 
 const useEditorStore = create<EditorStoreProps>((set, get) => ({
   components: [],
   currentComponentId: '',
+  hoveringComponentId: '',
   /**
    * @description 添加组件
    */
@@ -72,10 +73,12 @@ const useEditorStore = create<EditorStoreProps>((set, get) => ({
   updateComponent(id, props) {
     const { components } = get()
     const component = components.find(item => item.id === id)!
+
     component.props = {
       ...component.props,
       ...props,
     }
+
     set(() => ({ components }))
   },
 

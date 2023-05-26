@@ -5,8 +5,8 @@ export interface CommonDefaultPropsType {
   url?: string
 
   // size
-  height?: string
-  width?: string
+  height: string
+  width: string
   paddingLeft?: string
   paddingRight?: string
   paddingTop?: string
@@ -25,8 +25,8 @@ export interface CommonDefaultPropsType {
   // position
   // position?: React.CSSProperties['position']
   position?: string
-  left?: string
-  top?: string
+  left: string
+  top: string
   right?: string
 
   // color

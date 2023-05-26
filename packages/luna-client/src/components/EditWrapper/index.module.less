@@ -1,17 +1,20 @@
 .edit_wrapper {
-	@apply relative cursor-pointer border border-transparent select-none;
-
-	&:hover {
-		@apply border-dashed border-slate-400;
-	}
+	@apply box-content absolute cursor-pointer select-none;
 
 	&::before {
 		content: "";
-		@apply absolute top-0 left-0 right-0 bottom-0 z-10;
+		margin-top: -1px;
+		margin-left: -1px;
+		@apply opacity-0 absolute top-0 left-0 w-full h-full box-content border border-red-300;
+	}
+
+	&:hover::before {
+		@apply opacity-100;
+
 	}
 
 	&.active {
-		@apply border-solid border-sky-500 select-none;
+		@apply select-none border-2 border-cyan-300;
 		z-index: 1500;
 	}
 }
