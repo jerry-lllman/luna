@@ -1,7 +1,7 @@
 
 import useEditorStore from '@/store/editor'
 import styles from './index.module.less'
-import { useRef } from 'react'
+import { useLayoutEffect, useRef } from 'react'
 import DragDot from '../DragDot'
 
 interface Dots {
@@ -32,14 +32,23 @@ export default function DragBlock() {
 
   const currentComponent = getCurrentComponent()
 
-  const dragStyles = {
-    top: currentComponent?.props.top,
-    left: currentComponent?.props.left,
-    width: currentComponent?.props.width,
-    height: currentComponent?.props.height,
+  const getDragStyles = () => {
+    return {
+      top: currentComponent?.props.top,
+      left: currentComponent?.props.left,
+      width: currentComponent?.props.width,
+      height: currentComponent?.props.height,
+    }
   }
 
-  // 解决闭包问题
+  const dragStyles = getDragStyles()
+
+  useLayoutEffect(() => {
+    // 切换选中组件时更新位置
+    positionRef.current = getDragStyles()
+  }, [currentComponent?.id])
+
+  // 使用 ref 解决闭包问题
   const positionRef = useRef(dragStyles)
 
   const onMouseDown = (e: React.MouseEvent<HTMLDivElement>) => {
