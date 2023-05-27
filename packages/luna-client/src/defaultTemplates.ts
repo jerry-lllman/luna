@@ -6,6 +6,10 @@ export const defaultTemplates: Omit<ComponentData, 'id'>[] = [
     props: {
       text: '大标题',
       tag: 'h2',
+      top: '0px',
+      left: '0px',
+      height: '30px',
+      width: '200px'
       // fontSize: '30px',
       // lineHeight: '1',
       // fontWeight: 'bold',

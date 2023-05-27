@@ -3,7 +3,7 @@ import { isNil, keys, mapValues, reduce } from 'lodash-es'
 import { Suspense, cloneElement, isValidElement } from 'react'
 import { mapPropsToForms } from '@/propsMap'
 import type { PropToForm, PropsToForms } from '@/propsMap'
-import type { ComponentPropsType } from '@/defaultProps'
+import type { ComponentPropsType } from '@luna-cat/luna-components'
 
 interface PropsTableProps {
   props: ComponentPropsType
@@ -71,26 +71,21 @@ export default function PropsTable(props: PropsTableProps) {
       {
         keys(finalProps).map((key) => {
           // 拿到 mapPropsToForms 中自定的对应字段的内容 PropToForm 类型
-          const item = finalProps[key as keyof PropsToForms]
+          const item = finalProps[key]
           // 如果 item 不存在则返回 null
           if (isNil(item))
             return null
           // 否则渲染该组件
           const Component = item.component
           return (
-            <Suspense
+            <Form.Item
               key={key}
-              fallback={<div>loading...</div>}
+              label={item.label}
             >
-              <Form.Item
-                key={key}
-                label={item.label}
-              >
-                <Suspense fallback={<div>loading...</div>}>
-                  {Component}
-                </Suspense>
-              </Form.Item>
-            </Suspense>
+              <Suspense fallback={<div>loading...</div>}>
+                {Component}
+              </Suspense>
+            </Form.Item>
           )
         })
       }

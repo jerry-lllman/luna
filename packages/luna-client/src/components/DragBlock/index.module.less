@@ -1,0 +1,9 @@
+.drag_block {
+  @apply absolute z-50;
+
+  &::before {
+    content: '';
+    margin: -2px 0 0 -2px;
+    @apply absolute top-0 left-0 w-full h-full box-content border-2 border-cyan-300;
+  }
+}

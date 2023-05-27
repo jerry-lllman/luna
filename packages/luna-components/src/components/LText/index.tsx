@@ -10,7 +10,7 @@ export interface LTextComponentPropsType extends CommonDefaultPropsType {
   fontStyle?: string
   textDecoration?: string
   lineHeight?: string
-  // textAlign?: React.CSSProperties['textAlign']
+  textAlign?: string
   // tag 的类型是react 中的html标签名
   tag?: keyof JSX.IntrinsicElements
 }
@@ -20,7 +20,6 @@ function LText(props: LTextComponentPropsType) {
   const { tag = 'div' } = props
 
   const { styleProps, handleClick } = useComponentCommon(props)
-
   return React.createElement(
     tag,
     { style: styleProps, onClick: handleClick },

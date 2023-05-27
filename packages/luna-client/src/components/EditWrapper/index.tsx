@@ -1,22 +1,26 @@
-import classnames from 'classnames'
+
+import { ComponentPropsType } from '@luna-cat/luna-components'
 import styles from './index.module.less'
 
 interface EditWrapperProps {
   id: string
-  active?: boolean
   setActiveId: (id: string) => void
+  componentProps: ComponentPropsType
   children: React.ReactNode
 }
 
 export default function EditWrapper(props: EditWrapperProps) {
-  const { id, active = false, setActiveId, children } = props
+  const { id, setActiveId, componentProps, children } = props
 
-  const editWrapperClassName = classnames(styles.edit_wrapper, [
-    active && styles.active,
-  ])
+  const style = {
+    top: componentProps.top,
+    left: componentProps.left,
+    width: componentProps.width,
+    height: componentProps.height,
+  }
 
   return (
-    <div className={editWrapperClassName} onClick={() => setActiveId(id)}>
+    <div className={styles.edit_wrapper} style={style} onClick={() => setActiveId(id)}>
       {children}
     </div>
   )
