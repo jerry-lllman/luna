@@ -9,4 +9,9 @@ export class UserController {
   create(@Body() user: Omit<User, 'id' | 'createdAt'>) {
     return this.userService.createUser(user);
   }
+
+  @Get(':id')
+  findOne(@Param('id') id: string) {
+    return this.userService.findById(+id);
+  }
 }
